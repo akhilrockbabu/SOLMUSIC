@@ -1,0 +1,98 @@
+1.Calculate the feature importance using RF function
+X = data.drop('label', axis=1)
+y = data['label']
+model = RandomForestClassifier()
+model.fit(X, y)
+# Calculate feature importances first
+importances = model.feature_importances_
+# Then create the DataFrame
+feature_importance_df = pd.DataFrame({'feature': X.columns,'importance': importances}).sort_values('importance', ascending=False)
+print(feature_importance_df)
+
+
+
+2.relevant features
+#keeping only most relevant features
+relevant_features = ['rms_mean', 'chroma_stft_mean', 'mfcc4_mean', 'mfcc1_mean', 'mfcc17_mean',
+    'mfcc3_mean', 'mfcc6_mean', 'mfcc9_mean', 'mfcc20_mean', 'mfcc13_mean',
+    'tempo', 'mfcc5_mean', 'mfcc18_mean', 'mfcc10_mean', 'mfcc7_mean','mfcc16_mean','mfcc11_mean','mfcc12_mean','mfcc15_mean'
+]
+
+data = data[relevant_features + ['label']]
+data.head(5
+
+
+3.Handling Outliers
+for i in  relevant_features:
+  plt.figure(figsize=(8, 6))
+  sns.boxplot(x=data[i])
+  plt.title('Box Plot of '+i)
+
+
+data['rms_mean'] = np.where((data.rms_mean > 0.33), np.nan, data.rms_mean)
+data.dropna(subset=['rms_mean'], inplace=True)
+
+#chroma_stft_mean above 0.85 and below 0.03 are considered as outliers
+data['chroma_stft_mean'] = np.where((data.chroma_stft_mean > 0.65), np.nan, data.chroma_stft_mean)
+data.dropna(subset=['chroma_stft_mean'], inplace=True)
+data['chroma_stft_mean'] = np.where((data.chroma_stft_mean < 0.12), np.nan, data.chroma_stft_mean)
+data.dropna(subset=['chroma_stft_mean'], inplace=True)
+
+data['mfcc4_mean'] = np.where((data.mfcc4_mean < -17), np.nan, data.mfcc4_mean)
+data.dropna(subset=['mfcc4_mean'], inplace=True)
+data['mfcc4_mean'] = np.where((data.mfcc4_mean > 85), np.nan, data.mfcc4_mean)
+data.dropna(subset=['mfcc4_mean'], inplace=True)
+
+data['mfcc1_mean'] = np.where((data.mfcc1_mean < -600), np.nan, data.mfcc1_mean)
+data.dropna(subset=['mfcc1_mean'], inplace=True)
+
+data['mfcc17_mean'] = np.where((data.mfcc17_mean < -25), np.nan, data.mfcc17_mean)
+data.dropna(subset=['mfcc17_mean'], inplace=True)
+data['mfcc17_mean'] = np.where((data.mfcc17_mean > 22), np.nan, data.mfcc17_mean)
+data.dropna(subset=['mfcc17_mean'], inplace=True)
+
+data['mfcc3_mean'] = np.where((data.mfcc3_mean < -75), np.nan, data.mfcc3_mean)
+data.dropna(subset=['mfcc3_mean'], inplace=True)
+data['mfcc3_mean'] = np.where((data.mfcc3_mean > 75), np.nan, data.mfcc3_mean)
+data.dropna(subset=['mfcc3_mean'], inplace=True)
+
+data['mfcc6_mean'] = np.where((data.mfcc6_mean < -24), np.nan, data.mfcc6_mean)
+data.dropna(subset=['mfcc6_mean'], inplace=True)
+
+data['mfcc9_mean'] = np.where((data.mfcc9_mean < -39), np.nan, data.mfcc9_mean)
+data.dropna(subset=['mfcc9_mean'], inplace=True)
+data['mfcc9_mean'] = np.where((data.mfcc9_mean > 20), np.nan, data.mfcc9_mean)
+data.dropna(subset=['mfcc9_mean'], inplace=True)
+
+data['mfcc20_mean'] = np.where((data.mfcc20_mean < -25), np.nan, data.mfcc20_mean)
+data.dropna(subset=['mfcc20_mean'], inplace=True)
+data['mfcc20_mean'] = np.where((data.mfcc20_mean > 25), np.nan, data.mfcc20_mean)
+data.dropna(subset=['mfcc20_mean'], inplace=True)
+
+data['mfcc13_mean'] = np.where((data.mfcc13_mean > 20), np.nan, data.mfcc13_mean)
+data.dropna(subset=['mfcc13_mean'], inplace=True)
+
+data['tempo'] = np.where((data.tempo > 200), np.nan, data.tempo)
+data.dropna(subset=['tempo'], inplace=True)
+data['tempo'] = np.where((data.tempo < 45), np.nan, data.tempo)
+data.dropna(subset=['tempo'], inplace=True)
+
+data['mfcc5_mean'] = np.where((data.mfcc5_mean > 35), np.nan, data.mfcc5_mean)
+data.dropna(subset=['mfcc5_mean'], inplace=True)
+data['mfcc5_mean'] = np.where((data.mfcc5_mean < -50), np.nan, data.mfcc5_mean)
+data.dropna(subset=['mfcc5_mean'], inplace=True)
+
+data['mfcc18_mean'] = np.where((data.mfcc18_mean > 23), np.nan, data.mfcc18_mean)
+data.dropna(subset=['mfcc18_mean'], inplace=True)
+data['mfcc18_mean'] = np.where((data.mfcc18_mean < -18), np.nan, data.mfcc18_mean)
+data.dropna(subset=['mfcc18_mean'], inplace=True)
+
+data['mfcc10_mean'] = np.where((data.mfcc10_mean > 35), np.nan, data.mfcc10_mean)
+data.dropna(subset=['mfcc10_mean'], inplace=True)
+data['mfcc10_mean'] = np.where((data.mfcc10_mean < -25), np.nan, data.mfcc10_mean)
+data.dropna(subset=['mfcc10_mean'], inplace=True)
+
+data['mfcc7_mean'] = np.where((data.mfcc7_mean < -40), np.nan, data.mfcc7_mean)
+data.dropna(subset=['mfcc7_mean'], inplace=True)
+
+
