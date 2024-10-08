@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative; /* Added position relative */
+        }
+
+        .background {
+            background-image: url("{{ url_for('static', filename='assets/img/background2.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px); /* Apply the blur effect only to the background */
+            position: fixed; /* Fixed position to cover the entire viewport */
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Set behind the content */
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Adjusted the alpha value to control transparency */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 30px;
+            max-width: 400px;
+            color: #fff; /* Set text color to white */
+            font-family: 'Helvetica', sans-serif; /* Replace 'Helvetica' with a suitable font */
+            letter-spacing: 2px; 
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Start slightly below and fade in */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); /* End at normal position */
+            }
+        }
+
+
+        h1 {
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2781c4;
+        }
+
+        .blurred-block {
+            /*background-color: rgba(30, 30, 30, 0.7); /* Adjusted the color for better contrast */
+            /* color: #eee; /* Set text color to a lighter shade */
+            text-align: center;
+            /*border-radius: 10px; /* Rounded corners for a softer look */
+            /*box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3); /* Softer shadow effect */
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            font-family: 'Arial', sans-serif; /* Changed to Arial font */
+            font-size: 16px; /* Reduced font size for better readability */
+            line-height: 1.8; 
+            overflow: hidden; /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange; /* The typwriter cursor */
+            white-space: nowrap; /* Keeps the content on a single line */
+            margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em; /* Adjust as needed */
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .95s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+             to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+
+        /* Styles for the title */
+        .title {
+            font-family: 'YourPreferredFont', sans-serif; /* Replace with your preferred font */
+            font-size: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px #333;
+            color: #fff;
+            margin: 0;
+        }
+      
+
+      
+    </style>
+</head>
+<body>
+    <div class="background"></div> <!-- New div for the blurred background -->
+    <div class="container">
+        <h1 class="title">Diabetes Prediction using Machine Learning</h1>
+        <a href="/input" class="btn">Get Started</a>
+    </div>
+    <div class="blurred-block">
+        <p style="font-family: 'cursive'; font-size: 24px; font-weight: bold;">
+            Designed by Gowtham Kumar<span class="typing-text"></span>
+        </p>
+    </div>
+</body>
+</html>

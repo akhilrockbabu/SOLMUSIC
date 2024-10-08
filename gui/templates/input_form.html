@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='assets/img/bg_new.webp') }}"); /* Add your background image path */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            width: 80%;
+            margin-top: 20px; /* Move the form downwards */
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Start slightly below and fade in */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); /* End at normal position */
+            }
+        }
+
+        h1 {
+            color: #fff; /* White text color */
+        }
+
+        form {
+            text-align: left;
+            background-color: #1a4563; /* Dark blueish form background color */
+            border-radius: 10px; /* Rounded corners for form */
+            padding: 20px;
+        }
+
+        label {
+            color: #fff; /* White text color for labels */
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2781c4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction</h1>
+        <form method="POST" action="/result">
+            <label for="Pregnancies">Pregnancies:</label>
+            <input type="number"  name="Pregnancies" required>
+            <label for="Glucose">Glucose:</label>
+            <input type="number"  name="Glucose" required>
+            <label for="BloodPressure">Blood Pressure:</label>
+            <input type="number" name="BloodPressure" required>
+            <label for="SkinThickness">Skin Thickness:</label>
+            <input type="number" name="SkinThickness" required>
+            <label for="Insulin">Insulin:</label>
+            <input type="number" step="any" name="Insulin" required>
+            <label for="BMI">BMI:</label>
+            <input type="number" step="any" name="BMI" required>
+            <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+            <input type="number" step="any" name="DiabetesPedigreeFunction" required>
+            <label for="Age">Age:</label>
+            <input type="number" name="Age" required>
+            <input type="submit" class="btn" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
