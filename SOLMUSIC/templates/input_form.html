@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<title>SolMusic Home</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="SolMusic">
+	<meta name="keywords" content="music, html, music genre, classification">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon -->
+	<link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="shortcut icon"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+ 
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}">
+
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section 
+	<header class="header-section clearfix">
+		<a href="index.html" class="site-logo">
+			<img src="img/logo.png" alt="">
+		</a>
+		<ul class="main-menu">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Pages</a>
+				<ul class="sub-menu">
+					<li><a href="category.html">Category</a></li>
+					<li><a href="playlist.html">Playlist</a></li>
+					<li><a href="artist.html">Artist</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</li>
+			<li><a href="blog.html">News</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</header>
+	Header section end -->
+
+	<!-- Hero section -->
+	<section class="hero-section">
+		<div class="hero-slider owl-carousel">
+			<div class="hs-item">
+				<div class="container">
+					<p style="font-size: 30px; text-align: center;"><img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 200px; height: auto;"></p>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hs-text">
+								<h1>Upload WAV Audio File</h1>
+								{% with messages = get_flashed_messages(with_categories=true) %}
+								{% if messages %}
+									<ul>
+									{% for category, message in messages %}
+									<li style="color: white; background-color: rgba(255, 0, 0, 0.456); padding: 10px; border-radius: 5px;">{{ message|safe }}</li><br>
+									{% endfor %}
+									</ul>
+								{% endif %}
+								{% endwith %}
+								<form method="POST" action="/upload" enctype="multipart/form-data">
+									<input type="file" class="site-btn"name="audio" accept="audio/*" required>
+									<input type="submit" class="site-btn sb-c2" value="Check Genre">
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="hr-img">
+								<img src="{{ url_for('static', filename='img/hero-bg.png') }}" alt="Logo">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- How section -->
+	<section class="how-section spad set-bg" data-setbg="../static/img/how-to-bg.jpg">
+		<div class="container text-white">
+			<div class="section-title">
+				<h2>How it works</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="how-item">
+						<div class="hi-icon">
+							<img src="{{ url_for('static', filename='img/icons/brain.png') }}">
+						</div>
+						<h4>1. Audio File Upload</h4>
+						<p style="text-align: justify;">The system accepts audio files in WAV format for analysis. Users upload their WAV files, which are processed directly to ensure consistency in audio input.</p>
+						
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="how-item">
+						<div class="hi-icon">
+							<img src="{{ url_for('static', filename='img/icons/pointer.png') }}">
+						</div>
+						<h4>Feature Extraction</h4>
+						<p style="text-align: justify;">Once the WAV file is uploaded, important features such as MFCCs, spectral roll-off, and chroma features are extracted using the Librosa library. These extracted features are then normalized to ensure consistency and accuracy.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="how-item">
+						<div class="hi-icon">
+							<img src="{{ url_for('static', filename='img/icons/smartphone.png') }}">
+						</div>
+						<h4>Genre Prediction</h4>
+						<p style="text-align: justify;">The normalized features are then input into two pre-trained machine learning models, which predict the genre of the music. The system consolidates predictions from both models to deliver a final, accurate genre classification.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- How section end -->
+
+	<!-- Concept section -->
+	<section class="concept-section spad">
+		<div class="container">
+			<div class="row">
+					<div class="section-title">
+						<h2>Our Concepts</h2><br>
+						<p style="text-align: justify;">In today's world of digital music, classifying genres accurately is essential for enhancing user experience. Our project leverages machine learning algorithms to identify and categorize music genres based on extracted audio features. Whether it’s the energy of Soul Music, the thrill of Live Concerts, or the beats of DJ Sets, our system ensures precise recognition to enhance every listening experience.</p>
+						<p style="text-align: justify;">We use advanced techniques to analyze rhythm, harmony, and timbre, making genre identification fast and reliable. Our project transforms how music is understood and categorized, whether it’s live performances or curated playlists.</p>
+					</div>
+			</div>
+		</div>
+	</section>
+	<!-- Concept section end -->
+
+	<!-- Subscription section -->
+	<section class="subscription-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="sub-text">
+						<h2>Subscribe for ₹600/month</h2>
+						<h3>Start a free trial now</h3>
+						<p style="text-align: justify;">Unlock the full power of our music classification platform. Whether you’re a music enthusiast or a DJ looking for the perfect mix, we’ve got you covered. Our advanced machine learning models will help you explore music genres like never before.</p>
+						<a href="#" class="site-btn">Try it now</a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<ul class="sub-list">
+						<li><img src="{{ url_for('static', filename='img/icons/check-icon.png') }}">Play any track</li>
+						<li><img src="{{ url_for('static', filename='img/icons/check-icon.png') }}">Unlimited Genre Checks</li>
+						<li><img src="{{ url_for('static', filename='img/icons/check-icon.png') }}">More Precise</li>
+						<li><img src="{{ url_for('static', filename='img/icons/check-icon.png') }}">Instant Results</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Subscription section end -->
+
+
+	<!-- Footer section -->
+	<footer class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-7 order-lg-2">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>About us</h2>
+								<ul>
+									<li><a href="">Our Story</a></li>
+									<li><a href="">Sol Music Blog</a></li>
+									<li><a href="">History</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>Products</h2>
+								<ul>
+									<li><a href="">Music</a></li>
+									<li><a href="">Subscription</a></li>
+									<li><a href="">Custom Music</a></li>
+									<li><a href="">Footage</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>Playlists</h2>
+								<ul>
+									<li><a href="">Newsletter</a></li>
+									<li><a href="">Careers</a></li>
+									<li><a href="">Press</a></li>
+									<li><a href="">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-5 order-lg-1">
+					<img src="{{ url_for('static', filename='img/logo.png') }}">
+					<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Akhil Rock Babu</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					<div class="social-links">
+						<a href="https://www.instagram.com/rockiey._/"><i class="fa fa-instagram"></i></a>>
+						<a href="https://www.linkedin.com/in/akhilrockbabu/"><i class="fa fa-linkedin"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer section end -->
+	
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.slicknav.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/mixitup.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+	</body>
+</html>

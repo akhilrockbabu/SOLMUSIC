@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+
+	<script>
+		// Get the audio element and the button
+		const audioPlayer = document.getElementById('audioPlayer');
+		const playPauseButton = document.getElementById('playPauseButton');
+	
+		// Add event listener to the button
+		playPauseButton.addEventListener('click', function() {
+			if (audioPlayer.paused) {
+				audioPlayer.play();  // Play the audio
+				playPauseButton.textContent = 'Pause'; // Change button text to 'Pause'
+			} else {
+				audioPlayer.pause(); // Pause the audio
+				playPauseButton.textContent = 'Play'; // Change button text to 'Play'
+			}
+		});
+	</script>
+
+
+
+
+	<title>SolMusic Result</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="SolMusic">
+	<meta name="keywords" content="music, html, music genre, classification">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon -->
+	<link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="shortcut icon"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}">
+
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	
+	
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+
+	<!-- Player section -->
+	<section class="player-section set-bg" data-setbg="../static/img/player-bg.jpg
+	">
+		<div class="player-box">
+			<div class="tarck-thumb-warp">
+				<div class="tarck-thumb">
+					<img src="{{ url_for('static', filename='img/wave-thumb.jpg') }}" alt="Logo">
+					<!--<button onclick="wavesurfer.playPause();" class="wp-play"></button>-->
+				</div>
+			</div>
+			<div class="wave-player-warp">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="wave-player-info">
+							<h3>The Music Genre is:</h3><br>
+							<button class="site-btn" type="submit" value="" style="font-size: 20px; font-weight: bold;">{{res}}</button><br><br>
+							<a href="/" class="site-btn" style="font-size: 20px; font-weight: bold;">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<div id="wavePlayer" class="clierfix">
+					<div id="audiowave" data-waveurl="music-files/8.mp3"></div>
+					<div id="currentTime"></div>
+					<div id="clipTime"></div>
+					<!-- Player Controls 
+					<div class="wavePlayer_controls">
+						<audio controls>
+							<source src="{{ url_for('uploaded_file', filename=audio_file_name) }}" type="audio/wav">
+							Your browser does not support the audio element.
+						</audio>
+					</div> -->
+					<div class="wavePlayer_controls">
+						<audio id="audioPlayer" controls>
+							<source src="{{ url_for('uploaded_file', filename=audio_file_name) }}" type="audio/wav">
+							Your browser does not support the audio element.
+						</audio>
+						<!--<button id="playPauseButton" class="wp-play" type="button">Play/Pause</button>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Player section end -->
+
+	
+	<!-- Footer section -->
+	<footer class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-7 order-lg-2">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>About us</h2>
+								<ul>
+									<li><a href="">Our Story</a></li>
+									<li><a href="">Sol Music Blog</a></li>
+									<li><a href="">History</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>Products</h2>
+								<ul>
+									<li><a href="">Music</a></li>
+									<li><a href="">Subscription</a></li>
+									<li><a href="">Custom Music</a></li>
+									<li><a href="">Footage</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="footer-widget">
+								<h2>Playlists</h2>
+								<ul>
+									<li><a href="">Newsletter</a></li>
+									<li><a href="">Careers</a></li>
+									<li><a href="">Press</a></li>
+									<li><a href="">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-5 order-lg-1">
+					<img src="{{ url_for('static', filename='img/logo.png') }}">
+					<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Akhil Rock Babu</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					<div class="social-links">
+						<a href="https://www.instagram.com/rockiey._/"><i class="fa fa-instagram"></i></a>>
+						<a href="https://www.linkedin.com/in/akhilrockbabu/"><i class="fa fa-linkedin"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer section end -->
+	
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.slicknav.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/mixitup.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+	<!-- Audio Players js -->
+	<script src="{{ url_for('static', filename='js/jquery.jplayer.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/wavesurfer.min.js') }}"></script>
+
+
+	<!-- Audio Players Initialization -->
+	<script src="{{ url_for('static', filename='js/WaveSurferInit.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jplayerInit.js') }}"></script>
+
+	</body>
+</html>
